@@ -60,9 +60,10 @@ Keywords: [comma,separated,keywords,no,spaces]
 | Over 5% | Keyword stuffing risk | Reduce |
 
 **Currency Check:**
-- Flag any year references older than current year (past seasons are outdated)
-- Recommend updating to current/upcoming seasons
-- Use WebSearch to identify upcoming major events (World Cups, Euros, Olympics, etc.)
+- Use today's date to determine current year
+- Flag any year before current year as outdated (e.g., if current year is 2027, flag "2026", "25-26")
+- Recommend updates: past year → current year, past season → current/next season
+- WebSearch for upcoming major events in current and next year
 
 **Quality Checklist:**
 | Criteria | Target |
@@ -169,7 +170,7 @@ Same WebSearch as Google Play workflow.
 | Keywords in first 167 chars | [X] found | [list keywords] |
 | Optimal density (2-3%) | [X] keywords | [list those outside range] |
 | Keyword variety | [X] unique | Target: 10+ |
-| Year references current | Yes/No | [list any past years/seasons → update to current] |
+| Year references current | Yes/No | [list outdated years found → recommend current year] |
 
 ### Recommendations
 **Add:** [keywords] - Place in [title/first 167/body]
@@ -189,7 +190,7 @@ Same WebSearch as Google Play workflow.
 |----------|----------|-----------|--------|
 | First 167 | [old text snippet] | [new text snippet] | Added "results", "scores" |
 | Body | [old text snippet] | [new text snippet] | Reduced "live" density |
-| Body | [past year reference] | [current year reference] | Updated to current season |
+| Body | [outdated year] | [current year from today's date] | Updated to current year |
 
 ### Optimized Description
 [Full rewritten description with ALL changes applied - ready to copy/paste]
