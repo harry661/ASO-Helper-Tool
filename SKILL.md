@@ -110,7 +110,7 @@ Extract: trending terms, competitor keywords, seasonal opportunities.
 ### Phase 1: Analyze Field
 
 1. **Count characters** (commas count toward 100 limit)
-   - Example: `Soccer,Goal` = 6 + 1 + 4 = 11 chars
+   - Example: `Photo,Editor` = 5 + 1 + 6 = 12 chars
 2. Count keywords
 3. Flag issues:
    - Spaces after commas (waste)
@@ -188,8 +188,8 @@ Same WebSearch as Google Play workflow.
 ### Changes Applied
 | Location | Original | Optimized | Reason |
 |----------|----------|-----------|--------|
-| First 167 | [old text snippet] | [new text snippet] | Added "results", "scores" |
-| Body | [old text snippet] | [new text snippet] | Reduced "live" density |
+| First 167 | [old text snippet] | [new text snippet] | Added [category-relevant keywords] |
+| Body | [old text snippet] | [new text snippet] | Reduced [overused keyword] density |
 | Body | [outdated year] | [current year from today's date] | Updated to current year |
 
 ### Optimized Description
@@ -290,15 +290,20 @@ Same WebSearch as Google Play workflow.
 
 **Generic app terms:** app, application, download, free, new, best, top, great, amazing, awesome, perfect, excellent, wonderful, fantastic, today, fun, world
 
-**Keep these:** track, sync, share, save, check, get, watch, follow, see, play, vote, guess, predict, live, scores, results
+**Keep these:** track, sync, share, save, manage, edit, create, organize, search, filter, export, backup, secure, fast, easy, pro
 
 ### Trademark Flags
 
-| Type | Examples | Action |
-|------|----------|--------|
-| **Competitor apps** | sofascore, flashscore, fotmob, livescore, onefootball, espn | Remove (Safe) |
-| **Game trademarks** | fifa, ea, fc | Remove (Safe) |
-| **League trademarks** | nfl, nba, mlb | Remove (Safe) |
-| **Unrelated competitions** | FPL, Champions, Premier, Europa | Flag for review |
+**Identify competitor trademarks by:**
+1. WebSearch "[app category] popular apps" to find top competitors
+2. Flag any competitor app names or brand terms
+3. Flag platform trademarks (Google, Apple, Microsoft, Meta, etc.)
 
-**Context rule:** League/competition names should match the app's actual coverage.
+| Type | How to Identify | Action |
+|------|-----------------|--------|
+| Competitor apps | Top apps in same category | Remove (Safe) |
+| Platform brands | Google, Apple, Microsoft, Amazon, Meta | Remove (Safe) |
+| Third-party brands | Payment processors, social platforms | Remove (Safe) |
+| Category leaders | Research via WebSearch | Flag for review |
+
+**Context rule:** Only use keywords directly relevant to your app's actual features.
