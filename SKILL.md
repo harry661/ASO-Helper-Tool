@@ -60,9 +60,9 @@ Keywords: [comma,separated,keywords,no,spaces]
 | Over 5% | Keyword stuffing risk | Reduce |
 
 **Currency Check:**
-- Flag outdated year references (e.g., "2024", "24-25" when current year is 2026)
-- Recommend updating to current/upcoming seasons (2026, 25-26, 26-27)
-- Flag trending events (World Cup 2026, Euro 2028, etc.)
+- Flag any year references older than current year (past seasons are outdated)
+- Recommend updating to current/upcoming seasons
+- Use WebSearch to identify upcoming major events (World Cups, Euros, Olympics, etc.)
 
 **Quality Checklist:**
 | Criteria | Target |
@@ -169,7 +169,7 @@ Same WebSearch as Google Play workflow.
 | Keywords in first 167 chars | [X] found | [list keywords] |
 | Optimal density (2-3%) | [X] keywords | [list those outside range] |
 | Keyword variety | [X] unique | Target: 10+ |
-| Year references current | Yes/No | [list outdated: "2024" → "2026", "24-25" → "25-26"] |
+| Year references current | Yes/No | [list any past years/seasons → update to current] |
 
 ### Recommendations
 **Add:** [keywords] - Place in [title/first 167/body]
@@ -189,7 +189,7 @@ Same WebSearch as Google Play workflow.
 |----------|----------|-----------|--------|
 | First 167 | [old text snippet] | [new text snippet] | Added "results", "scores" |
 | Body | [old text snippet] | [new text snippet] | Reduced "live" density |
-| Body | "stats in 2024 & 2025" | "stats in 2025 & 2026" | Updated outdated years |
+| Body | [past year reference] | [current year reference] | Updated to current season |
 
 ### Optimized Description
 [Full rewritten description with ALL changes applied - ready to copy/paste]
