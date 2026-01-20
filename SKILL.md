@@ -324,140 +324,248 @@ Same WebSearch as Google Play workflow.
 ### Google Play Report
 
 ```markdown
-## Google Play Description Analysis for "[App Name]"
+# GOOGLE PLAY - ASO Analysis Report
 
-### Summary
-- **App ID:** [com.company.app]
-- **Total words:** [X]
-- **Description length:** [X]/4000 chars ([X]% utilization)
-- **Keywords analyzed:** [X]
-- **Branded keywords found:** [X]
+**App:** [App Name]
+**ID:** [com.company.app]
 
-### Keyword Analysis (AppFollow-Style)
-| Keyword | Popularity | Difficulty | Your Rank | Branded | Action |
-|---------|------------|------------|-----------|---------|--------|
-| [word] | [X]/100 | [X]/100 | #[X] or Not ranked | **Branded** or blank | Keep/Remove/Emphasize |
+---
 
-**Score Legend:**
-- Popularity: 80-100 Very high, 60-79 High, 40-59 Moderate, 20-39 Low, 1-19 Very low
-- Difficulty: 0-30 Easy, 31-60 Moderate, 61-100 Hard
-- Priority: High popularity + Low difficulty = Best opportunity
+## Overview
 
-> ⚠️ Popularity scores are estimates based on autocomplete position. For accurate data, use AppFollow or similar paid tools.
+| Metric | Value | Target |
+|--------|-------|--------|
+| Description Length | [X]/4000 chars | 2800+ (70%+) |
+| Utilization | [X]% | 70-100% |
+| Keywords Analyzed | [X] | — |
+| Branded Detected | [X] | 0 |
 
-### Branded Keywords Detected
-- **[keyword]** - [reason: Competitor app / Platform brand / Category leader]
+---
 
-### Keyword Frequency Table
-| Keyword | Count | Density | Position | Action |
+## Keyword Performance
+
+| Keyword | Your Rank | Autocomplete Pos. | Pop. (est.) | Status | Action |
+|---------|-----------|-------------------|-------------|--------|--------|
+| [word] | #12 | 2 | 90 | — | Keep |
+| [word] | — | 1 | 100 | BRANDED | Remove |
+| [word] | #5 | 4 | 70 | — | Emphasize |
+
+**Understanding the data:**
+- **Your Rank** = Real position in Google Play search results (from scraper)
+- **Autocomplete Pos.** = Real position in store suggestions (1-10, or — if not found)
+- **Pop. (est.)** = Estimate only (autocomplete position × 10, not actual search volume)
+
+---
+
+## Keyword Density
+
+| Keyword | Count | Density | Location | Status |
 |---------|-------|---------|----------|--------|
-| [word] | [n] | [%] | Title/First 167/Body | Keep/Increase/Reduce |
+| [word] | 5x | 2.1% | Title + Body | Optimal |
+| [word] | 2x | 0.8% | Body only | Increase |
+| [word] | 12x | 5.2% | Throughout | Reduce |
 
-### Quality Assessment
-| Criteria | Status | Notes |
-|----------|--------|-------|
-| Primary keyword in title | Yes/No | [keyword if found] |
-| Keywords in first 167 chars | [X] found | [list keywords] |
-| Optimal density (2-3%) | [X] keywords | [list those outside range] |
-| Keyword variety | [X] unique | Target: 10+ |
-| Year references current | Yes/No | [list outdated years found → recommend current year] |
-| Character utilization | [X]% | Target: 70%+ (2800+ chars) |
+**Targets:** Under 1% = Too low | 2-3% = Optimal | Over 5% = Stuffing risk
 
-### Recommendations
-**Add:** [keywords] - Place in [title/first 167/body]
-**Emphasize:** [keywords] - Currently [X]x, target 3-5x
-**Reduce:** [keywords] - Currently [X]%, target 2-3%
+---
 
-### Before/After Comparison
-| Metric | Before | After |
-|--------|--------|-------|
-| Total words | [X] | [X] |
-| Unique keywords | [X] | [X] |
-| Keywords at optimal density | [X] | [X] |
-| Keywords in first 167 | [X] | [X] |
-| Character utilization | [X]% | [X]% |
+## Issues Found
 
-### Changes Applied
-| Location | Original | Optimized | Reason |
-|----------|----------|-----------|--------|
-| First 167 | [old text snippet] | [new text snippet] | Added [category-relevant keywords] |
-| Body | [old text snippet] | [new text snippet] | Reduced [overused keyword] density |
-| Body | [outdated year] | [current year from today's date] | Updated to current year |
+### Branded Keywords (Remove)
 
-### Expansion Opportunities (if under 70% utilization)
-If description is underutilized, add content from these categories:
-- **Feature elaboration:** [specific features to describe in more detail with keyword variations]
-- **Use cases:** [scenarios that naturally include target keywords]
-- **Social proof:** [awards, user counts, ratings context]
-- **Technical details:** [supported devices, OS versions, integrations]
-- **FAQ-style content:** [common questions with keyword-rich answers]
-- **Localization notes:** [supported languages, regional features]
+| Keyword | Reason | Risk |
+|---------|--------|------|
+| [keyword] | Competitor app | HIGH |
+| [keyword] | Platform brand | HIGH |
 
-### Optimized Description
-[Full rewritten description - matches original tone/structure, no AI patterns, ready to copy/paste]
+### Quality Checklist
+
+| Check | Status | Notes |
+|-------|--------|-------|
+| Primary keyword in title | Yes/No | [keyword] |
+| Keywords in first 167 chars | [X]/5 | [list] |
+| Current year references | Yes/No | [outdated > current] |
+| Optimal density (2-3%) | [X] keywords | [list outside range] |
+
+---
+
+## Recommendations
+
+### Add These Keywords
+
+| Keyword | Popularity | Suggested Placement |
+|---------|------------|---------------------|
+| [word] | 75/100 | Title / First 167 |
+| [word] | 68/100 | Body (3-5x) |
+
+### Adjust Existing
+
+| Keyword | Current | Target | Action |
+|---------|---------|--------|--------|
+| [word] | 1x | 3-5x | Emphasize |
+| [word] | 8% | 2-3% | Reduce |
+
+### Remove
+
+| Keyword | Reason |
+|---------|--------|
+| [word] | Branded / Low value |
+
+---
+
+## Before / After
+
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| Total Words | [X] | [X] | +[X] |
+| Unique Keywords | [X] | [X] | +[X] |
+| Optimal Density | [X] | [X] | +[X] |
+| First 167 Keywords | [X] | [X] | +[X] |
+| Utilization | [X]% | [X]% | +[X]% |
+
+---
+
+## Optimized Description
+
+[Full rewritten description - ready to copy/paste]
+
+---
+
+## Data Sources
+
+| Column | Type | Source |
+|--------|------|--------|
+| Your Rank | REAL | Google Play search results |
+| Autocomplete Pos. | REAL | Google Play autocomplete |
+| Pop. (est.) | ESTIMATE | Calculated: position × 10 |
+
+**Note:** Pop. scores are rough estimates based on autocomplete position, not actual search volume. For accurate data, use AppFollow or App Radar.
 ```
+
+---
 
 ### iOS Report
 
 ```markdown
-## iOS Keyword Field Analysis for "[App Name]"
+# iOS APP STORE - Keyword Field Analysis
 
-### Summary
-- **App ID:** [numeric ID]
-- **Total:** [X]/100 chars used
-- **Keywords analyzed:** [X]
-- **Branded keywords found:** [X]
-
-### Keyword Analysis (AppFollow-Style)
-| Keyword | Popularity | Your Rank | Branded | Action |
-|---------|------------|-----------|---------|--------|
-| [word] | [X]/100 | #[X] or Not ranked | **Branded** or blank | Keep/Remove/Emphasize |
-
-**Popularity Score Legend:**
-- 80-100: Very high (estimate)
-- 60-79: High (estimate)
-- 40-59: Moderate (estimate)
-- 20-39: Low (estimate)
-- 1-19: Very low / niche (estimate)
-
-> ⚠️ Scores are estimates based on autocomplete position. For accurate data, use AppFollow or similar paid tools.
-
-### Branded Keywords Detected
-- **[keyword]** - [reason: Competitor app / Platform brand / Category leader]
-
-### Suggested Replacements (high popularity, not branded)
-| Suggestion | Popularity | Chars |
-|------------|------------|-------|
-| [word] | [X]/100 | [X] |
+**App:** [App Name]
+**ID:** [123456789]
 
 ---
 
+## Overview
+
+| Metric | Value | Target |
+|--------|-------|--------|
+| Characters Used | [X]/100 | 95-100 |
+| Keywords | [X] | Maximize |
+| Branded Found | [X] | 0 |
+
+---
+
+## Keyword Performance
+
+| Keyword | Your Rank | Autocomplete Pos. | Pop. (est.) | Status | Action |
+|---------|-----------|-------------------|-------------|--------|--------|
+| [word] | #1 | 1 | 100 | — | Keep |
+| [word] | #12 | 3 | 80 | — | Keep |
+| [word] | — | 5 | 60 | — | Consider |
+| [word] | #49 | 8 | 30 | BRANDED | Remove |
+| [word] | — | — | — | LOW | Remove |
+
+**Understanding the data:**
+- **Your Rank** = Real position in App Store search results (from iTunes API)
+- **Autocomplete Pos.** = Real position in store suggestions (1-10, or — if not found)
+- **Pop. (est.)** = Estimate only (autocomplete position × 10, not actual search volume)
+
+---
+
+## Issues Found
+
+### Branded Keywords
+
+| Keyword | Type | Risk |
+|---------|------|------|
+| [keyword] | Competitor App | HIGH |
+| [keyword] | Platform Brand | HIGH |
+
+### Other Issues
+
+| Keyword | Issue | Action |
+|---------|-------|--------|
+| [keyword] | In app name (redundant) | Remove |
+| [keyword] | Space after comma | Fix format |
+| [keyword] | Low popularity | Replace |
+
+---
+
+## Suggested Replacements
+
+| Add This | Popularity | Chars | Replaces |
+|----------|------------|-------|----------|
+| [word] | 85/100 | [X] | [old word] |
+| [word] | 78/100 | [X] | [old word] |
+
+---
+
+## Optimized Keywords
+
 ### Option 1: Safe (Recommended)
-**Keywords** ([X]/100 chars):
+
 ```
-[optimized,keywords,here]
+[keyword,keyword,keyword,keyword,keyword]
 ```
 
-**Removed:** [keyword] (branded/low popularity)
-**Added:** [keyword] (high popularity: [X]/100)
+| Metric | Value |
+|--------|-------|
+| Characters | [X]/100 |
+| Keywords | [X] |
+| Remaining | [X] chars |
+
+**Changes:**
+- Removed: [keyword] (branded), [keyword] (low pop.)
+- Added: [keyword] (pop: 85), [keyword] (pop: 78)
 
 ---
 
 ### Option 2: Aggressive
-**Keywords** ([X]/100 chars):
+
 ```
-[keywords,with,competitors]
+[keyword,keyword,keyword,keyword,keyword]
 ```
 
-**Risk keywords kept:** [list with warnings]
+| Metric | Value |
+|--------|-------|
+| Characters | [X]/100 |
+| Keywords | [X] |
+| Remaining | [X] chars |
+
+**Risk keywords kept:**
+- [keyword] — Competitor name (may cause rejection)
+- [keyword] — Platform brand (may cause rejection)
 
 ---
 
-### Character Budget
-| Version | Total Chars | Keywords | Remaining |
-|---------|-------------|----------|-----------|
-| Safe | [X]/100 | [X] | [X] |
-| Aggressive | [X]/100 | [X] | [X] |
+## Summary Comparison
+
+| Version | Chars | Keywords | High Pop. | Branded |
+|---------|-------|----------|-----------|---------|
+| Original | [X] | [X] | [X] | [X] |
+| Safe | [X] | [X] | [X] | 0 |
+| Aggressive | [X] | [X] | [X] | [X] |
+
+---
+
+## Data Sources
+
+| Column | Type | Source |
+|--------|------|--------|
+| Your Rank | REAL | iTunes Search API |
+| Autocomplete Pos. | REAL | iOS App Store Autocomplete API |
+| Pop. (est.) | ESTIMATE | Calculated: position × 10 |
+
+**Note:** Pop. scores are rough estimates based on autocomplete position, not actual search volume. For accurate data, use AppFollow or App Radar.
 ```
 
 ---
@@ -522,7 +630,40 @@ If description is underutilized, add content from these categories:
 
 **Context rule:** Only use keywords directly relevant to your app's actual features.
 
-### Free Keyword Data Sources
+### ASO Scraper Tool (Recommended)
+
+For more accurate real-time data, use the included Python scraper:
+
+**One-time setup:**
+```bash
+pip install selenium webdriver-manager
+```
+
+**Usage:**
+```bash
+# Google Play - analyze keywords
+python aso_scraper.py "soccer,football,scores" --platform gplay
+
+# Google Play - with app ranking lookup
+python aso_scraper.py "soccer,football" --platform gplay --app-id com.sofascore.app
+
+# iOS App Store - analyze keywords
+python aso_scraper.py "soccer,football" --platform ios --country US
+
+# iOS - with app ranking lookup
+python aso_scraper.py "soccer,football" --platform ios --app-id 1176147574
+```
+
+**Output:** JSON with popularity scores, suggestions, and app rankings.
+
+**Requirements:**
+- Python 3.x
+- Chrome browser (for Google Play)
+- curl (for iOS - no browser needed)
+
+---
+
+### Free Keyword Data Sources (Manual)
 
 **iOS App Store Autocomplete (Direct API):**
 ```bash
