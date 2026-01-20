@@ -332,16 +332,25 @@ Same WebSearch as Google Play workflow.
 
 ## Keywords
 
-| Keyword | Count | Search Interest | Action |
-|---------|-------|-----------------|--------|
-| football | 2x | HIGH | **+5x** |
-| soccer | 1x | HIGH | **+4x** |
-| live scores | — | HIGH | **ADD** |
-| scores | 2x | HIGH | **+3x** |
-| UEFA | 6x | HIGH | OK |
-| UECL | 4x | NICHE | OK |
+**IMPORTANT:** Always run the scraper to get real data:
+```bash
+python aso_scraper.py "keyword1,keyword2" --platform gplay --app-id [APP_ID]
+```
 
-**Search Interest:** HIGH = popular | MED = moderate | LOW = few | NICHE = very specific
+| Keyword | Rank | Count | Score | Top Suggestions | Issue | Action |
+|---------|------|-------|-------|-----------------|-------|--------|
+| conference league | #1 | 3x | 100 | conference league, conference league app | ✓ | OK |
+| UEFA | #5 | 3x | 90 | uefa champions league, uefa, uefa tv | ✓ | OK |
+| football | — | 2x | 100 | football games, football live | ✓ | **+5x** |
+| soccer | — | 1x | 100 | soccer, soccer games, soccer star | ✓ | **+4x** |
+| live scores | — | 0x | 100 | live scores, live scores football | ✓ | **ADD** |
+
+**Understanding the data:**
+- **Rank** = Your app's position in Google Play search results — REAL DATA
+- **Count** = How many times keyword appears in your description
+- **Score** = Popularity from autocomplete (100=exact match, lower=less popular) — REAL DATA
+- **Top Suggestions** = What users see when typing this keyword — REAL DATA
+- **Issue** = ✓ means relevant, ⚠️ explains the problem
 
 ---
 
@@ -580,11 +589,12 @@ python aso_scraper.py "keyword1,keyword2" --platform ios --app-id [APP_ID]
 
 ### ASO Scraper Tool (Recommended)
 
-For more accurate real-time data, use the included Python scraper:
+For real-time data from both app stores, use the included Python scraper:
 
 **One-time setup:**
 ```bash
 pip install selenium webdriver-manager
+npm install google-play-scraper
 ```
 
 **Usage:**
@@ -602,11 +612,12 @@ python aso_scraper.py "soccer,football" --platform ios --country US
 python aso_scraper.py "soccer,football" --platform ios --app-id 1176147574
 ```
 
-**Output:** JSON with popularity scores, suggestions, and app rankings.
+**Output:** JSON with real data - popularity scores, autocomplete suggestions, and app rankings.
 
 **Requirements:**
 - Python 3.x
-- Chrome browser (for Google Play)
+- Node.js (for Google Play suggestions via google-play-scraper)
+- Chrome browser (for Google Play rankings)
 - curl (for iOS - no browser needed)
 
 ---

@@ -66,29 +66,33 @@ def get_browser():
 def get_gplay_suggestions(browser, keyword, country="US"):
     """
     Get autocomplete suggestions from Google Play search.
+    Uses the google-play-scraper npm package for reliable results.
     Returns list of suggestions with popularity scores.
     """
-    url = f"https://play.google.com/store/search?q={quote(keyword)}&c=apps&hl=en&gl={country}"
-
     try:
-        browser.get(url)
+        # Use node.js google-play-scraper package for reliable suggestions
+        cmd = f'''node -e "const gplay = require('google-play-scraper').default; gplay.suggest({{term: '{keyword}', country: '{country.lower()}'}}).then(r => console.log(JSON.stringify(r))).catch(e => console.log('[]'))"'''
 
-        # Wait for page to load (max 5 seconds)
-        WebDriverWait(browser, 5).until(
-            EC.presence_of_element_located((By.TAG_NAME, "body"))
+        result = subprocess.run(
+            cmd,
+            shell=True,
+            capture_output=True,
+            text=True,
+            timeout=15,
+            cwd=sys.path[0] or '.'  # Run from script directory where node_modules is
         )
 
-        suggestions = []
+        if result.returncode != 0:
+            return []
 
-        # Try to get autocomplete suggestions from search input
+        suggestions = []
         try:
-            elements = browser.find_elements(By.CSS_SELECTOR, '[data-display-text]')
-            for i, el in enumerate(elements[:10]):
-                text = el.get_attribute('data-display-text')
-                if text:
+            data = json.loads(result.stdout.strip())
+            for i, text in enumerate(data[:10]):
+                if text and isinstance(text, str):
                     score = 100 - (i * 10)  # Position 1=100, 2=90, etc.
                     suggestions.append({"keyword": text, "score": score})
-        except Exception:
+        except (json.JSONDecodeError, TypeError):
             pass
 
         return suggestions
