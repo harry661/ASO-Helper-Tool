@@ -324,122 +324,63 @@ Same WebSearch as Google Play workflow.
 ### Google Play Report
 
 ```markdown
-# GOOGLE PLAY - ASO Analysis Report
+# GOOGLE PLAY - ASO Analysis
 
-**App:** [App Name]
-**ID:** [com.company.app]
-
----
-
-## Overview
-
-| Metric | Value | Target |
-|--------|-------|--------|
-| Description Length | [X]/4000 chars | 2800+ (70%+) |
-| Utilization | [X]% | 70-100% |
-| Keywords Analyzed | [X] | — |
-| Branded Detected | [X] | 0 |
+**App:** [Name] | **Length:** [X]/4000 ([X]%) | **Status:** GOOD / NEEDS WORK
 
 ---
 
-## Keyword Performance
+## Keywords
 
-| Keyword | Your Rank | Autocomplete Pos. | Pop. (est.) | Status | Action |
-|---------|-----------|-------------------|-------------|--------|--------|
-| [word] | #12 | 2 | 90 | — | Keep |
-| [word] | — | 1 | 100 | BRANDED | Remove |
-| [word] | #5 | 4 | 70 | — | Emphasize |
+| Keyword | Count | Search Interest | Action |
+|---------|-------|-----------------|--------|
+| football | 2x | HIGH | **+5x** |
+| soccer | 1x | HIGH | **+4x** |
+| live scores | — | HIGH | **ADD** |
+| scores | 2x | HIGH | **+3x** |
+| UEFA | 6x | HIGH | OK |
+| UECL | 4x | NICHE | OK |
 
-**Understanding the data:**
-- **Your Rank** = Real position in Google Play search results (from scraper)
-- **Autocomplete Pos.** = Real position in store suggestions (1-10, or — if not found)
-- **Pop. (est.)** = Estimate only (autocomplete position × 10, not actual search volume)
-
----
-
-## Keyword Density
-
-| Keyword | Count | Density | Location | Status |
-|---------|-------|---------|----------|--------|
-| [word] | 5x | 2.1% | Title + Body | Optimal |
-| [word] | 2x | 0.8% | Body only | Increase |
-| [word] | 12x | 5.2% | Throughout | Reduce |
-
-**Targets:** Under 1% = Too low | 2-3% = Optimal | Over 5% = Stuffing risk
+**Search Interest:** HIGH = popular | MED = moderate | LOW = few | NICHE = very specific
 
 ---
 
-## Issues Found
+## Add These
 
-### Branded Keywords (Remove)
-
-| Keyword | Reason | Risk |
-|---------|--------|------|
-| [keyword] | Competitor app | HIGH |
-| [keyword] | Platform brand | HIGH |
-
-### Quality Checklist
-
-| Check | Status | Notes |
-|-------|--------|-------|
-| Primary keyword in title | Yes/No | [keyword] |
-| Keywords in first 167 chars | [X]/5 | [list] |
-| Current year references | Yes/No | [outdated > current] |
-| Optimal density (2-3%) | [X] keywords | [list outside range] |
+| Keyword | Search Interest | Example Usage |
+|---------|-----------------|---------------|
+| live scores | HIGH | "Check live scores and results" |
+| results | HIGH | "scores, results, and standings" |
+| sports | HIGH | "the best sports app" |
 
 ---
 
-## Recommendations
+## First 167 Characters
 
-### Add These Keywords
+**Current:** "[First 167 chars]..."
 
-| Keyword | Popularity | Suggested Placement |
-|---------|------------|---------------------|
-| [word] | 75/100 | Title / First 167 |
-| [word] | 68/100 | Body (3-5x) |
-
-### Adjust Existing
-
-| Keyword | Current | Target | Action |
-|---------|---------|--------|--------|
-| [word] | 1x | 3-5x | Emphasize |
-| [word] | 8% | 2-3% | Reduce |
-
-### Remove
-
-| Keyword | Reason |
-|---------|--------|
-| [word] | Branded / Low value |
-
----
-
-## Before / After
-
-| Metric | Before | After | Change |
-|--------|--------|-------|--------|
-| Total Words | [X] | [X] | +[X] |
-| Unique Keywords | [X] | [X] | +[X] |
-| Optimal Density | [X] | [X] | +[X] |
-| First 167 Keywords | [X] | [X] | +[X] |
-| Utilization | [X]% | [X]% | +[X]% |
+**Better:** "[Improved version with high-value keywords]..."
 
 ---
 
 ## Optimized Description
 
+```
 [Full rewritten description - ready to copy/paste]
+```
 
 ---
 
-## Data Sources
+## What Changed
 
-| Column | Type | Source |
-|--------|------|--------|
-| Your Rank | REAL | Google Play search results |
-| Autocomplete Pos. | REAL | Google Play autocomplete |
-| Pop. (est.) | ESTIMATE | Calculated: position × 10 |
-
-**Note:** Pop. scores are rough estimates based on autocomplete position, not actual search volume. For accurate data, use AppFollow or App Radar.
+| Change | Before | After | Why |
+|--------|--------|-------|-----|
+| Added "live scores" | 0x | 3x | HIGH search interest, was missing |
+| Added "sports" | 0x | 2x | HIGH search interest, was missing |
+| Increased "football" | 2x | 8x | Too low for main keyword |
+| Increased "soccer" | 1x | 4x | Too low |
+| Added section headers | No | Yes | Improves readability + keyword density |
+| Length | 37% | 72% | Was underutilized |
 ```
 
 ---
@@ -466,18 +407,25 @@ Same WebSearch as Google Play workflow.
 
 ## Keyword Performance
 
-| Keyword | Your Rank | Autocomplete Pos. | Pop. (est.) | Status | Action |
-|---------|-----------|-------------------|-------------|--------|--------|
-| [word] | #1 | 1 | 100 | — | Keep |
-| [word] | #12 | 3 | 80 | — | Keep |
-| [word] | — | 5 | 60 | — | Consider |
-| [word] | #49 | 8 | 30 | BRANDED | Remove |
-| [word] | — | — | — | LOW | Remove |
+**IMPORTANT:** Always run the scraper to get real data:
+```bash
+python aso_scraper.py "keyword1,keyword2" --platform ios --app-id [APP_ID]
+```
+
+| Keyword | Rank | Score | Top Suggestions | Issue | Action |
+|---------|------|-------|-----------------|-------|--------|
+| [word] | #1 | 95 | soccer, soccer stars, soccer games | ✓ | Keep |
+| [word] | #12 | 95 | champions league, champions | ✓ | Keep |
+| [word] | — | 70 | drawing apps, drawing games | ⚠️ triggers art apps | Remove |
+| [word] | — | 70 | goal tracker, goal battle | ⚠️ triggers productivity | Remove |
+| [word] | — | 95 | sofascore, sofascore live | ⚠️ competitor app | Remove |
+| [word] | — | 20 | (none) | ⚠️ no search volume | Remove |
 
 **Understanding the data:**
-- **Your Rank** = Real position in App Store search results (from iTunes API)
-- **Autocomplete Pos.** = Real position in store suggestions (1-10, or — if not found)
-- **Pop. (est.)** = Estimate only (autocomplete position × 10, not actual search volume)
+- **Rank** = Your app's position in search results (from iTunes Search API) — REAL DATA
+- **Score** = Popularity from autocomplete API (95=exact match found, 70=related, 20=none) — REAL DATA
+- **Top Suggestions** = What users actually see when typing this keyword — REAL DATA
+- **Issue** = ✓ means relevant to your app, ⚠️ explains the problem
 
 ---
 
@@ -559,13 +507,13 @@ Same WebSearch as Google Play workflow.
 
 ## Data Sources
 
-| Column | Type | Source |
-|--------|------|--------|
-| Your Rank | REAL | iTunes Search API |
-| Autocomplete Pos. | REAL | iOS App Store Autocomplete API |
-| Pop. (est.) | ESTIMATE | Calculated: position × 10 |
+| Column | Source | Type |
+|--------|--------|------|
+| Rank | iTunes Search API | REAL |
+| Score | iOS Autocomplete API | REAL |
+| Top Suggestions | iOS Autocomplete API | REAL |
 
-**Note:** Pop. scores are rough estimates based on autocomplete position, not actual search volume. For accurate data, use AppFollow or App Radar.
+**All data is real** — fetched directly from Apple's APIs via the scraper. No estimates.
 ```
 
 ---
