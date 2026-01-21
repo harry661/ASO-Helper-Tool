@@ -21,18 +21,55 @@ pip install selenium webdriver-manager
 npm install google-play-scraper aso
 ```
 
-**Also required:**
+**Required versions:**
 - Python 3.x
-- Node.js 14+
+- **Node.js 20+** (REQUIRED for google-play-scraper v10+)
 - Chrome browser (for Google Play rankings)
+
+**Project-Local Node 20:**
+This skill includes a standalone Node.js 20 installation at `.node/bin/node` for Google Play scraper compatibility. Always use this for Google Play commands:
+```bash
+# Use the project-local Node 20 for ALL Google Play commands
+NODE20=".node/bin/node"
+$NODE20 -e "import('google-play-scraper').then(g=>g.default.suggest({term:'test'}).then(r=>console.log(r)))"
+```
+
+**If project-local Node missing:** Re-download Node 20 standalone:
+```bash
+curl -O https://nodejs.org/dist/v20.18.2/node-v20.18.2-darwin-x64.tar.gz
+tar -xzf node-v20.18.2-darwin-x64.tar.gz
+mv node-v20.18.2-darwin-x64 .node
+rm node-v20.18.2-darwin-x64.tar.gz
+```
 
 **Verify installation:**
 ```bash
 python -c "import selenium; print('✓ selenium')"
-node -e "require('google-play-scraper'); console.log('✓ google-play-scraper')"
+.node/bin/node -e "import('google-play-scraper').then(g=>g.default.suggest({term:'test'}).then(()=>console.log('✓ google-play-scraper'))).catch(e=>console.log('✗ Error:', e.message))"
 ```
 
-If any dependency is missing, the scraper will fail and you'll get pattern-based estimates instead of real data.
+If the scraper fails, check that `.node/bin/node` exists and is Node 20+.
+
+---
+
+## ⛔ NEVER Cross-Platform Data (CRITICAL)
+
+**Absolute rule - no exceptions:**
+- **iOS analysis** → Use iOS Autocomplete API ONLY
+- **Google Play analysis** → Use Google Play Scraper ONLY
+- **NEVER** use iOS data for Google Play recommendations
+- **NEVER** use Google Play data for iOS recommendations
+
+**If a platform's scraper fails:**
+1. **STOP** - Do not proceed with keyword popularity recommendations
+2. **Notify the user** - Explain exactly which scraper failed and why
+3. **Offer alternatives:**
+   - Fix the scraper (check Node version, reinstall packages)
+   - User provides AppFollow/paid tool data
+   - Proceed with density/utilization analysis only (no keyword popularity)
+4. **NEVER fall back to the other platform's data**
+
+This rule exists because iOS and Google Play have completely different algorithms, search behaviors, and user bases. Cross-platform data leads to bad recommendations.
 
 ---
 
@@ -114,6 +151,47 @@ To get real data, ensure dependencies are installed:
 
 ---
 
+## ⚠️ Data-Driven Keyword Selection (CRITICAL)
+
+**NEVER recommend keywords based on assumptions. ALWAYS use real data.**
+
+### The Golden Rule
+**Popularity > Relevance > Safety**
+
+When choosing keywords:
+1. **First: Check actual popularity** — Use scraper data, AppFollow, or Apple Search Ads
+2. **Second: Verify relevance** — Does this keyword match user intent for your app category?
+3. **Third: Check safety** — Is it trademarked or branded?
+
+### Anti-Pattern: Feature-Based Assumptions
+| ❌ WRONG | ✓ RIGHT |
+|----------|---------|
+| "This is a football app with standings, so I'll add 'standings'" | "Let me check if 'standings' has high search volume... it doesn't, so I'll find a higher-volume alternative" |
+| "The app has alerts, so 'alerts' is a good keyword" | "What do users actually search for? 'notifications' has 3x the volume of 'alerts'" |
+| "Features = keywords" | "Search volume = keywords" |
+
+### Keyword Selection Checklist
+Before recommending ANY replacement keyword:
+- [ ] Verified popularity score (autocomplete API or user-provided AppFollow data)
+- [ ] Confirmed high search volume (not just "appears in autocomplete")
+- [ ] Checked that top results match user intent (not irrelevant apps)
+- [ ] Prioritized by: **Volume × Relevance ÷ Difficulty**
+
+### When Data is Limited
+If you only have autocomplete data (not Apple Search Ads):
+1. **State the limitation clearly** to the user
+2. **Ask if they have AppFollow/paid tool data** for better accuracy
+3. **Recommend high-confidence keywords only** — those appearing as exact matches in position 1-3
+4. **Flag uncertain recommendations** — "This keyword appears in autocomplete but actual volume is unknown"
+
+### Never Assume
+- Feature names are NOT automatically good keywords
+- Low-competition ≠ opportunity (may mean no demand)
+- "Makes sense for the app" ≠ "users search for this"
+- Autocomplete position ≠ actual search volume (AppFollow/Apple Search Ads is more accurate)
+
+---
+
 ## Quick Start
 
 **Analyze Google Play Description:**
@@ -166,11 +244,12 @@ curl -s "https://search.itunes.apple.com/WebObjects/MZSearchHints.woa/wa/hints?c
 | Not in top 10 | 20-39 | Low popularity |
 | No suggestions | 1-19 | Very low / niche |
 
-**Google Play - Get traffic score:**
+**Google Play - Get suggestions (requires Node 20+):**
 ```bash
-node -e "require('aso')('gplay').scores('[keyword]').then(r=>console.log(r.traffic.score*10))"
+# Use project-local Node 20
+.node/bin/node -e "import('google-play-scraper').then(g=>g.default.suggest({term:'[keyword]',country:'us'}).then(r=>console.log(JSON.stringify(r.slice(0,10)))))"
 ```
-Multiply traffic.score (0-10) by 10 to get 1-100 scale.
+Position in suggestions indicates relative popularity (first = most popular).
 
 ### App Ranking Lookup
 
@@ -180,9 +259,10 @@ curl -s "https://itunes.apple.com/search?term=[keyword]&country=us&entity=softwa
 ```
 Search the JSON results for your App ID (trackId field). Position in array = your rank.
 
-**Google Play:**
+**Google Play (requires Node 20+):**
 ```bash
-node -e "require('aso')('gplay').search({term:'[keyword]',num:100}).then(r=>{let i=r.findIndex(a=>a.appId==='[APP_ID]');console.log(i>=0?'#'+(i+1):'Not ranked')})"
+# Use project-local Node 20
+.node/bin/node -e "import('google-play-scraper').then(g=>g.default.search({term:'[keyword]',num:100}).then(r=>{let i=r.findIndex(a=>a.appId==='[APP_ID]');console.log(i>=0?'#'+(i+1):'Not ranked')}))"
 ```
 
 ### Branded Keyword Detection
@@ -423,9 +503,17 @@ Same WebSearch as Google Play workflow.
 
 **Option 1: Safe (Recommended)**
 - Remove all flagged keywords
-- Replace with trending alternatives
+- Replace with high-popularity alternatives (verified via data)
 - **Target 95-100 chars** — unused characters = missed keyword opportunities
 - If under 95 chars after replacements, add more relevant keywords until near limit
+
+**⚠️ Keyword Selection Priority (REQUIRED):**
+1. **High popularity** (verified via scraper or user-provided data) — REQUIRED
+2. **Relevant to app category** — REQUIRED
+3. **Not branded/trademarked** — REQUIRED for Safe option
+4. **Character efficient** — PREFERRED
+
+Do NOT add keywords just because they "describe the app's features." Only add keywords with VERIFIED high search volume. If you don't have popularity data for a keyword, either fetch it or ask the user.
 
 **Option 2: Aggressive (User's Risk)**
 - Keep competitor/trademark keywords
@@ -860,29 +948,31 @@ curl -s "https://search.itunes.apple.com/WebObjects/MZSearchHints.woa/wa/hints?c
 - Position in list indicates relative search volume
 - No authentication required
 
-**Google Play (via aso library):**
+**Google Play (via google-play-scraper - requires Node 20+):**
 
 One-time setup:
 ```bash
-npm install aso google-play-scraper
-```
-
-Get keyword scores:
-```bash
-node -e "require('aso')('gplay').scores('[keyword]').then(r=>console.log(JSON.stringify(r,null,2)))"
+npm install google-play-scraper
 ```
 
 Get keyword suggestions:
 ```bash
-node -e "require('aso')('gplay').suggest({strategy:'SEARCH',keywords:['[keyword]'],num:20}).then(r=>console.log(JSON.stringify(r,null,2)))"
+# Use project-local Node 20
+.node/bin/node -e "import('google-play-scraper').then(g=>g.default.suggest({term:'[keyword]',country:'us'}).then(r=>console.log(JSON.stringify(r,null,2))))"
 ```
 
-**Score Interpretation (Google Play):**
-| Score | Difficulty | Traffic |
-|-------|------------|---------|
-| 0-3 | Easy to rank | Low volume |
-| 4-6 | Moderate | Medium volume |
-| 7-10 | Very hard | High volume |
+Search for apps by keyword:
+```bash
+.node/bin/node -e "import('google-play-scraper').then(g=>g.default.search({term:'[keyword]',num:20}).then(r=>console.log(r.map(a=>a.title+' ('+a.appId+')').join('\n'))))"
+```
+
+**Popularity Interpretation (Google Play):**
+| Suggestion Position | Popularity | Meaning |
+|---------------------|------------|---------|
+| 1st | Very High | Top search term |
+| 2-3 | High | Popular search |
+| 4-6 | Medium | Moderate interest |
+| 7+ or missing | Low | Less searched |
 
 **Rate Limiting:**
 - iOS API: Generally reliable, but add 1s delay between requests if batching

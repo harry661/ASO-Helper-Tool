@@ -2,5 +2,15 @@
   "dependencies": {
     "aso": "^1.1.1",
     "google-play-scraper": "^10.1.2"
-  }
+  },
+  "name": "pb-aso-helper-skill",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
