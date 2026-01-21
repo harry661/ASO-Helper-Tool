@@ -252,25 +252,36 @@ Record difficulty and traffic scores. Prioritize keywords with:
 **Density Targets:**
 | Density | Assessment | Action |
 |---------|------------|--------|
-| Under 1% | Too low | Add more instances |
-| 2-3% | Optimal | Maintain |
-| Over 5% | Keyword stuffing risk | Reduce |
+| Under 1% | ❌ Too low | Must increase significantly |
+| 1-2% | ⚠️ Below optimal | Increase to hit 2-3% |
+| **2-3%** | **✓ Optimal** | **Target range for primary keywords** |
+| 3-4% | ✓ Acceptable | Fine if natural |
+| Over 5% | ❌ Stuffing risk | Reduce immediately |
+
+**Target Density by Keyword Priority:**
+| Priority | Keywords | Target Density | Occurrences (in 600 words) |
+|----------|----------|----------------|---------------------------|
+| Primary | 3-5 core keywords | **2.5-3%** | 15-18x each |
+| Secondary | 5-10 supporting | 1.5-2% | 9-12x each |
+| Tertiary | 10+ related | 0.5-1% | 3-6x each |
 
 **Character Utilization:**
 | Utilization | Assessment | Action |
 |-------------|------------|--------|
-| Under 50% | Severely underutilized | Expand significantly - missing keyword opportunities |
-| 50-70% | Underutilized | Expand with additional features/keywords |
-| 70-90% | Good | Minor expansion if relevant content available |
-| 90-100% | Optimal | Fully utilized |
+| Under 50% | ❌ Critical | Must expand significantly |
+| 50-70% | ⚠️ Underutilized | Expand with keyword-rich content |
+| 70-85% | ✓ Good | Continue expanding if possible |
+| **85-95%** | **✓ Optimal** | **Target range (3,400-3,800 chars)** |
+| 95-100% | ✓ Maxed | Ideal if content remains natural |
 
-**When underutilized, expand with:**
-- Additional feature descriptions with keyword variations
-- Use cases and scenarios (naturally includes keywords)
-- Supported languages/regions
-- Related functionality users search for
-- Long-tail keyword phrases
-- Seasonal/event-related content
+**Expansion Strategies (when under 85%):**
+- Detailed feature explanations (2-3 sentences per feature)
+- Use cases: "Perfect for fans who want to..."
+- Comparison phrases: "Get faster updates than..."
+- FAQ-style content: "Looking for live scores? Check..."
+- Seasonal content: "Follow the 2025-26 season with..."
+- Benefits: "Never miss a goal with instant notifications"
+- Social proof: "Join millions of fans tracking..."
 
 **Currency Check:**
 - Use today's date to determine current year
@@ -282,11 +293,12 @@ Record difficulty and traffic scores. Prioritize keywords with:
 | Criteria | Target |
 |----------|--------|
 | Primary keyword in title | Yes |
-| Keywords in first 167 chars | 3-5 unique |
-| Unique relevant keywords | 10+ |
-| Optimal density keywords | 5+ at 2-3% |
+| Keywords in first 167 chars | 5-7 unique |
+| Unique relevant keywords | 15+ |
+| Primary keywords at 2-3% density | 3-5 keywords |
+| Secondary keywords at 1.5-2% density | 5-10 keywords |
 | Year references current | Yes (no past seasons) |
-| Character utilization | 70%+ (2800+ chars) |
+| **Character utilization** | **85%+ (3,400+ chars)** |
 
 ### Phase 3: Research Trends
 
@@ -302,9 +314,10 @@ Extract: trending terms, competitor keywords, seasonal opportunities.
 
 **Provide recommendations:**
 1. **Keywords to add** - From research, with suggested placement (title/first 167/body)
-2. **Keywords to emphasize** - Currently under 2%, increase to 3-5 occurrences
-3. **Keywords to reduce** - Currently over 5%, reduce to 2-3%
-4. **Expand description** - If under 70% utilization, add content sections with keyword opportunities
+2. **Primary keywords to maximize** - Push to 2.5-3% density (15-18 occurrences)
+3. **Secondary keywords to increase** - Push to 1.5-2% density (9-12 occurrences)
+4. **Keywords to reduce** - Currently over 5%, reduce to 2-3%
+5. **Expand description** - If under 85% utilization, add content until 3,400+ chars
 
 **Provide before/after metrics:**
 | Metric | Before | After |
@@ -485,6 +498,14 @@ No tables, no analysis - just the deliverable.
 
 ## Optimized Description
 [Full text]
+
+## Top Keywords (Optimized)
+| Keyword | Count | Density | Target | Status |
+|---------|-------|---------|--------|--------|
+| [primary keywords] | 15x | 2.5% | 2-3% | ✓/⚠️ |
+| [secondary keywords] | 10x | 1.7% | 1.5-2% | ✓/⚠️ |
+
+**Utilization:** [X]% (target: 85%+)
 ```
 
 **iOS:**
@@ -566,6 +587,24 @@ python aso_scraper.py "keyword1,keyword2" --platform gplay --app-id [APP_ID]
 ```
 [Full rewritten description - ready to copy/paste]
 ```
+
+---
+
+## Keyword Utilization (Optimized)
+
+| Keyword | Priority | Count | Density | Target | Status |
+|---------|----------|-------|---------|--------|--------|
+| football | Primary | 15x | 2.5% | 2-3% | ✓ Optimal |
+| scores | Primary | 14x | 2.3% | 2-3% | ✓ Optimal |
+| live | Primary | 12x | 2.0% | 2-3% | ✓ Optimal |
+| match | Secondary | 10x | 1.7% | 1.5-2% | ✓ Good |
+| results | Secondary | 9x | 1.5% | 1.5-2% | ✓ Good |
+| standings | Secondary | 8x | 1.3% | 1.5-2% | ⚠️ Below target |
+| ... | ... | ... | ... | ... | ... |
+| **Total unique** | — | **20+** | — | — | — |
+| **Utilization** | — | — | — | **85%+** | ✓/⚠️ |
+
+**Density guide:** <1% = too low | 1-2% = below optimal | **2-3% = optimal** | >5% = stuffing
 
 ---
 
